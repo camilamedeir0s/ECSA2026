@@ -1,0 +1,14 @@
+source,target,weight
+main,recommendation,0.89
+main,productcat,6.05
+main,ad,0.74
+main,currency,2.26
+main,cart,1.05
+main,checkout,0.05
+main,shipping,0.16
+recommendation,productcat,0.21
+checkout,currency,0.05
+checkout,cart,0.11
+checkout,email,0.05
+checkout,payment,0.05
+checkout,shipping,0.11
