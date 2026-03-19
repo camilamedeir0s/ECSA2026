@@ -1,0 +1,95 @@
+resources:
+- ad-currency-main-payment_cart-checkout-recommendation-shipping_email_productcat.yaml
+patches:
+- target:
+    kind: HorizontalPodAutoscaler
+  patch: |
+    $patch: delete
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: dummy
+- target:
+    kind: Deployment
+    name: onlineboutique-ad-cur-main-pay-4e94d1fe-8da32f21
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-ad-cur-main-pay-4e94d1fe-8da32f21
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "1275m"
+                  memory: "1275Mi"
+                requests:
+                  cpu: "1275m"
+                  memory: "1275Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-ct-co-rec-sh-4e94d1fe-3129597d
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-ct-co-rec-sh-4e94d1fe-3129597d
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "502m"
+                  memory: "502Mi"
+                requests:
+                  cpu: "502m"
+                  memory: "502Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-em-4e94d1fe-61c86ac7
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-em-4e94d1fe-61c86ac7
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "50m"
+                  memory: "50Mi"
+                requests:
+                  cpu: "50m"
+                  memory: "50Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-pc-4e94d1fe-ac6201e2
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-pc-4e94d1fe-ac6201e2
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "173m"
+                  memory: "173Mi"
+                requests:
+                  cpu: "173m"
+                  memory: "173Mi"

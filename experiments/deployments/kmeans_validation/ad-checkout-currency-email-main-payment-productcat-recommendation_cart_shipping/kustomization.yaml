@@ -1,0 +1,74 @@
+resources:
+- ad-checkout-currency-email-main-payment-productcat-recommendation_cart_shipping.yaml
+patches:
+- target:
+    kind: HorizontalPodAutoscaler
+  patch: |
+    $patch: delete
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: dummy
+- target:
+    kind: Deployment
+    name: onlineboutique-ad-co-cur-em-main-pay-pc-rec-9626aa83-6151a8dd
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-ad-co-cur-em-main-pay-pc-rec-9626aa83-6151a8dd
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "1690m"
+                  memory: "1690Mi"
+                requests:
+                  cpu: "1690m"
+                  memory: "1690Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-ct-9626aa83-bc251f96
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-ct-9626aa83-bc251f96
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "195m"
+                  memory: "195Mi"
+                requests:
+                  cpu: "195m"
+                  memory: "195Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-sh-9626aa83-9535e36f
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-sh-9626aa83-9535e36f
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "115m"
+                  memory: "115Mi"
+                requests:
+                  cpu: "115m"
+                  memory: "115Mi"

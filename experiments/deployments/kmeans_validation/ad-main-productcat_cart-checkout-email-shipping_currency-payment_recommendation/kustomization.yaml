@@ -1,0 +1,95 @@
+resources:
+- ad-main-productcat_cart-checkout-email-shipping_currency-payment_recommendation.yaml
+patches:
+- target:
+    kind: HorizontalPodAutoscaler
+  patch: |
+    $patch: delete
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: dummy
+- target:
+    kind: Deployment
+    name: onlineboutique-ad-main-pc-a36b5978-1668ef8e
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-ad-main-pc-a36b5978-1668ef8e
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "1240m"
+                  memory: "1240Mi"
+                requests:
+                  cpu: "1240m"
+                  memory: "1240Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-ct-co-em-sh-a36b5978-7bc36108
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-ct-co-em-sh-a36b5978-7bc36108
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "435m"
+                  memory: "435Mi"
+                requests:
+                  cpu: "435m"
+                  memory: "435Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-cur-pay-a36b5978-5000d895
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-cur-pay-a36b5978-5000d895
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "208m"
+                  memory: "208Mi"
+                requests:
+                  cpu: "208m"
+                  memory: "208Mi"
+- target:
+    kind: Deployment
+    name: onlineboutique-rec-a36b5978-54d79712
+  patch: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: onlineboutique-rec-a36b5978-54d79712
+    spec:
+      template:
+        spec:
+          containers:
+            - name: serviceweaver
+              $patch: merge
+              resources:
+                limits:
+                  cpu: "117m"
+                  memory: "117Mi"
+                requests:
+                  cpu: "117m"
+                  memory: "117Mi"
