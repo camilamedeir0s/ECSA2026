@@ -1,0 +1,24 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-emulation
+spec:
+  action: netem
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      'serviceweaver/app': 'onlineboutique'
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        'serviceweaver/app': 'onlineboutique'
+  delay:
+    latency: '200ms'
+    correlation: '100'
+    jitter: '0ms'
